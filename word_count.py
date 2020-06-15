@@ -115,12 +115,12 @@ queries = ['미디어']#, '소매', '통신', '보험', '금융', '소비재']
 
 df = pd.read_pickle('./word_similar_list.pkl').dropna()
 
-maxpage = '2'
+maxpage = '10'
 
 save_dir = 'res_wordCounts'
 
 result = []
-for i in range(2):
+for i in range(52):
     print('WEEK {}'.format(i+1))
     for query in queries:
         df_sites = crawler(maxpage, query, i)
@@ -128,7 +128,7 @@ for i in range(2):
         for idx, row in df.iterrows():
             if int(row['week_num'][1:]) - 1 == i:
                 words = word_count(df_sites, relevant_words(row))
-                result.append((i, query, row['query'], row['word_similar'], words))
+                result.append((i+1, query, row['query'], row['word_similar'], words))
 
 df_wordCounts = pd.DataFrame(result, columns=['week', 'industry', 'initial_query', 'word_similar', 'word_counts'])
 #df_wordCounts.to_pickle('./word_counts.pkl')
