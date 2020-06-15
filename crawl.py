@@ -1,3 +1,4 @@
+#%%
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -116,13 +117,13 @@ e_date_set = ["2019.06.07", "2019.06.14", "2019.06.21", "2019.06.28", "2019.07.0
               "2020.04.17", "2020.04.24", "2020.05.01", "2020.05.08", "2020.05.15", \
               "2020.05.22", "2020.05.29"]
 
-maxpage = '100'
-query = ['인공지능', '금융', '산업']
+maxpage = '5'
+query = ['비대면', '기업']
 word_similar_set = ["대면", "ZOOM", "zoom", "원격수업", "원격진료", "온라인", "기업", \
                     "구글", "삼성", "네이버", "카카오", "삼성 SDS", "페이스북", "LG CNS", \
                     "아마존", "AWS", "트위터", "넷플릭스", "배달의민족", "요기요", "우아한형제들"]
 
-"""
+
 for i in range(len(s_date_set)):
     for j in query:
         week = str(i+1).zfill(2)
@@ -130,7 +131,7 @@ for i in range(len(s_date_set)):
         e_date = e_date_set[i]
         df = crawler(maxpage, j, s_date, e_date, week, save_dir)
         print("Crawling....."+week+"/"+str(len(s_date_set)))
-"""
+
 """
 fList = os.listdir("./"+save_dir+"/")
 pkl_list = [file for file in fList if file.endswith(".pkl")]
@@ -147,3 +148,5 @@ for i in range(len(pkl_list)):
             print_similar(model, word_similar)
 
 """
+
+# %%
